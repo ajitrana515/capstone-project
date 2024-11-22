@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .result {
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .legitimate {
+            background-color: #dff0d8;
+            color: #3c763d;
+        }
+        .malicious {
+            background-color: #f2dede;
+            color: #a94442;
+        }
+        .error {
+            background-color: #fcf8e3;
+            color: #8a6d3b;
+        }
+        .back-btn {
+            background-color: #337ab7;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analysis Result</h1>
+    
+    <div class="result {{ prediction }}">
+        {% if prediction == 'legitimate' %}
+            <h2>File is Legitimate</h2>
+            <p>The analyzed file appears to be safe and legitimate.</p>
+        {% elif prediction == 'malicious' %}
+            <h2>⚠️ File is Malicious</h2>
+            <p>The analyzed file has been identified as potentially malicious.</p>
+        {% else %}
+            <h2>Analysis Error</h2>
+            <p>There was an error analyzing the file. Please ensure you uploaded a valid PE file.</p>
+        {% endif %}
+    </div>
+
+    <a href="{{ url_for('home') }}" class="back-btn">Analyze Another File</a>
+</body>
+</html>
